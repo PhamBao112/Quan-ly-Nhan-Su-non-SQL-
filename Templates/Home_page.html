@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBL Group</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: white;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 1440px; height: 1024px; position: relative; background: white; overflow: hidden; margin: 0 auto;">
+        
+        <!-- Header với ảnh mây -->
+        <img style="width: 1440px; height: 126px; left: 0px; top: 0px; position: absolute; outline: 5px black solid; outline-offset: -2.50px" src="https://media.istockphoto.com/id/1324413691/fr/photo/beau-ciel-avec-des-nuages-blancs.webp?a=1&b=1&s=612x612&w=0&k=20&c=KU3abh_PVFxcN7pXzdUKvNTN-Oq33h89lBr7rRqNxc0=" />
+        
+        <!-- Text NBL Group trên header -->
+        <div style="left: 75px; top: 38px; position: absolute; color: black; font-size: 40px; font-family: Inter; font-weight: 700; word-wrap: break-word; z-index: 10;">NBL Group</div>
+        
+        <!-- Thanh menu nền xám -->
+        <div style="width: 1440px; height: 100px; left: 0px; top: 120px; position: absolute; background: #796D6D"></div>
+        
+        <!-- Nút Home -->
+        <a href="/">
+            <div style="width: 240px; height: 100px; left: 0px; top: 120px; position: absolute; background: #D9D9D9; border: 3px black solid; cursor: pointer;"></div>
+            <div style="left: 75px; top: 151px; position: absolute; color: #141313; font-size: 32px; font-family: Inter; font-weight: 400; word-wrap: break-word">Home</div>
+        </a>
+        
+        <!-- Nút Nhân viên -->
+        <a href="/nhanvien">
+            <div style="width: 240px; height: 100px; left: 240px; top: 120px; position: absolute; background: #D9D9D9; border: 3px black solid; cursor: pointer;"></div>
+            <div style="left: 284px; top: 151px; position: absolute; color: #1C1B1F; font-size: 32px; font-family: Inter; font-weight: 400; word-wrap: break-word">Nhân viên</div>
+        </a>
+        
+        <!-- Nút Khách hàng -->
+        <a href="/khachhang">
+            <div style="width: 240px; height: 100px; left: 481px; top: 120px; position: absolute; background: #D9D9D9; border: 3px black solid; cursor: pointer;"></div>
+            <div style="left: 511px; top: 149px; position: absolute; color: black; font-size: 32px; font-family: Inter; font-weight: 400; word-wrap: break-word">Khách hàng</div>
+        </a>
+        
+        <!-- Nút Đối tác -->
+        <a href="/doitac">
+            <div style="width: 240px; height: 100px; left: 722px; top: 120px; position: absolute; background: #D9D9D9; border: 3px black solid; cursor: pointer;"></div>
+            <div style="left: 788px; top: 149px; position: absolute; color: black; font-size: 32px; font-family: Inter; font-weight: 400; word-wrap: break-word">Đối tác</div>
+        </a>
+        
+        <!-- Nút Liên hệ -->
+        <a href="/lienhe">
+            <div style="width: 240px; height: 100px; left: 961px; top: 120px; position: absolute; background: #D9D9D9; border: 3px black solid; cursor: pointer;"></div>
+            <div style="left: 1026px; top: 150px; position: absolute; color: black; font-size: 32px; font-family: Inter; font-weight: 400; word-wrap: break-word">Liên hệ</div>
+        </a>
+        
+        <!-- Nút Tài khoản -->
+        <a href="/taikhoan">
+            <div style="width: 240px; height: 100px; left: 1200px; top: 120px; position: absolute; background: #D9D9D9; border: 3px black solid; cursor: pointer;"></div>
+            <div style="left: 1247px; top: 154px; position: absolute; color: black; font-size: 32px; font-family: Inter; font-weight: 400; word-wrap: break-word">Tài khoản</div>
+        </a>
+        
+        <!-- Ảnh chính (hero image) -->
+        <img style="width: 1440px; height: 804px; left: 0px; top: 220px; position: absolute" src="{{ url_for('static', filename='MG_7373.jpg') }}" alt="Main image" />
+        
+        <!-- Text trên ảnh -->
+        <div style="left: 60px; top: 785px; position: absolute; color: white; font-size: 48px; font-family: Inter; font-weight: 400; word-wrap: break-word; z-index: 5;">Công Ty TNHH NBL</div>
+        <div style="left: 86px; top: 864px; position: absolute; color: white; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word; z-index: 5;">Lựa chọn hàng đầu cho những chuyến du lịch</div>
+        
+    </div>
+</body>
+</html>

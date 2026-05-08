@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NBL Group - Danh bạ khách hàng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: white; 
+      overflow-x: hidden; 
+    }
+    
+    a { 
+      text-decoration: none; 
+      color: inherit; 
+    }
+    
+    /* Layout */
+    .page { 
+      width: 1440px; 
+      height: 1024px; 
+      position: relative; 
+      background: white; 
+      overflow: hidden; 
+      margin: 0 auto; 
+    }
+    
+    header img { 
+      width: 100%; 
+      height: 126px; 
+      display: block; 
+      outline: 5px solid black; 
+      outline-offset: -2.5px; 
+    }
+    
+    .header-title { 
+      position: absolute; 
+      left: 75px; 
+      top: 38px; 
+      color: black; 
+      font-size: 40px; 
+      font-family: 'Inter', sans-serif;
+      font-weight: 700; 
+      z-index: 10; 
+    }
+    
+    .menu-bg { 
+      width: 100%; 
+      height: 100px; 
+      position: absolute; 
+      top: 120px; 
+      background: #796D6D; 
+    }
+    
+    .nav-item { 
+      position: absolute; 
+      top: 120px; 
+      height: 100px; 
+      background: #D9D9D9; 
+      border: 3px solid black; 
+      cursor: pointer; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .nav-text { 
+      font-family: 'Inter', sans-serif;
+      font-size: 32px; 
+      font-weight: 400;
+      color: #141313; 
+    }
+    
+    /* Content area */
+    .content-bg { 
+      position: absolute; 
+      left: 0; 
+      top: 222px; 
+      width: 100%; 
+      height: 802px; 
+      background: #CDE8FF; 
+    }
+    
+    .panel { 
+      position: absolute; 
+      left: 75px; 
+      top: 65px; 
+      width: 1290px; 
+      height: 740px; 
+      background: white; 
+      padding: 20px; 
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    h1 { 
+      font-size: 32px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+    }
+    
+    .controls { 
+      display: flex; 
+      gap: 12px; 
+      align-items: center; 
+    }
+    
+    .controls button { 
+      padding: 10px 16px; 
+      border-radius: 8px; 
+      border: none;
+      cursor: pointer; 
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    
+    .btn-green { 
+      background: #2e9e4b; 
+      color: white; 
+    }
+    
+    .btn-green:hover {
+      background: #26873f;
+    }
+    
+    .btn-blue { 
+      background: #1e90ff; 
+      color: white; 
+    }
+    
+    .btn-blue:hover {
+      background: #1873cc;
+    }
+    
+    .btn-gray { 
+      background: #9e9e9e; 
+      color: white; 
+    }
+    
+    .btn-gray:hover {
+      background: #757575;
+    }
+    
+    .btn-add { 
+      background: #28a745; 
+      color: white; 
+    }
+    
+    .btn-add:hover {
+      background: #218838;
+    }
+    
+    .table-wrap { 
+      max-height: 640px; 
+      overflow-y: auto; 
+      overflow-x: auto;
+      border: 2px solid #ccc; 
+      padding: 8px;
+      border-radius: 6px;
+    }
+    
+    /* Scrollbar styling */
+    .table-wrap::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+    
+    .table-wrap::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    
+    .table-wrap::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+    
+    .table-wrap::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      min-width: 1000px;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    th, td { 
+      padding: 12px 15px; 
+      border: 1px solid #ddd; 
+      text-align: left; 
+      font-size: 15px; 
+      vertical-align: middle; 
+    }
+    
+    thead th { 
+      background: #4A90E2;
+      color: white;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    
+    tbody tr:nth-child(even) td { 
+      background: #fafafa; 
+    }
+    
+    tbody tr:hover {
+      background: #f0f8ff;
+    }
+    
+    .action-btn { 
+      padding: 6px 10px; 
+      border-radius: 6px; 
+      border: none; 
+      cursor: pointer;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      transition: all 0.2s;
+      margin-right: 4px;
+    }
+    
+    .del-btn { 
+      background: #dc3545; 
+      color: white; 
+    }
+    
+    .del-btn:hover {
+      background: #c82333;
+    }
+    
+    .edit-btn { 
+      background: #ffc107; 
+      color: #222; 
+    }
+    
+    .edit-btn:hover {
+      background: #e0a800;
+    }
+    
+    @media (max-width: 1200px) {
+      .page { 
+        width: 100%; 
+      }
+      .panel { 
+        left: 20px; 
+        right: 20px; 
+        width: auto; 
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Header với ảnh mây -->
+    <header>
+      <img src="https://media.istockphoto.com/id/1324413691/fr/photo/beau-ciel-avec-des-nuages-blancs.webp?a=1&b=1&s=612x612&w=0&k=20&c=KU3abh_PVFxcN7pXzdUKvNTN-Oq33h89lBr7rRqNxc0=" alt="clouds" />
+      <div class="header-title">NBL Group</div>
+    </header>
+
+    <!-- Menu background -->
+    <div class="menu-bg"></div>
+
+    <!-- Navigation buttons -->
+    <a class="nav-item" href="/" style="left: 0px; width: 240px;">
+      <div class="nav-text">Home</div>
+    </a>
+    
+    <a class="nav-item" href="/nhanvien" style="left: 240px; width: 240px;">
+      <div class="nav-text">Nhân viên</div>
+    </a>
+    
+    <a class="nav-item" href="/khachhang" style="left: 481px; width: 240px;">
+      <div class="nav-text">Khách hàng</div>
+    </a>
+    
+    <a class="nav-item" href="/doitac" style="left: 722px; width: 240px;">
+      <div class="nav-text">Đối tác</div>
+    </a>
+    
+    <a class="nav-item" href="/lienhe" style="left: 961px; width: 240px;">
+      <div class="nav-text">Liên hệ</div>
+    </a>
+    
+    <a class="nav-item" href="/taikhoan" style="left: 1200px; width: 240px;">
+      <div class="nav-text">Tài khoản</div>
+    </a>
+
+    <!-- Content area -->
+    <div class="content-bg">
+      <div class="panel">
+        <div class="panel-header">
+          <h1>Danh bạ khách hàng</h1>
+          <div class="controls">
+            <button id="btnAdd" class="btn-add" title="Thêm khách hàng">➕ Thêm</button>
+            <button id="btnSortName" class="btn-green">🔤 Sắp theo tên</button>
+            <button id="btnSortId" class="btn-blue">🔢 Sắp theo ID</button>
+            <button id="btnReset" class="btn-gray">↩️ Reset</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table id="dataTable" aria-live="polite">
+            <thead>
+              <tr>
+                <th style="width: 80px">ID</th>
+                <th>Họ và Tên</th>
+                <th style="width: 120px">Giới tính</th>
+                <th style="width: 180px">Số điện thoại</th>
+                <th>Nhóm</th>
+                <th style="width: 140px">Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <!-- Dữ liệu sẽ được render bằng JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* ========= Client-side logic =========
+  - Load data from /api/khachhang
+  - Sort by server via query params
+  - Add/Edit/Delete operations
+====================================== */
+
+let currentSort = null;
+let currentOrder = 'asc';
+
+// DOM elements
+const tableBody = document.getElementById('tableBody');
+const btnSortName = document.getElementById('btnSortName');
+const btnSortId = document.getElementById('btnSortId');
+const btnReset = document.getElementById('btnReset');
+const btnAdd = document.getElementById('btnAdd');
+
+// Load data from API
+async function loadData(sortBy = null, order = 'asc') {
+  try {
+    let url = '/api/khachhang';
+    if (sortBy) {
+      url += `?sort_by=${encodeURIComponent(sortBy)}&order=${encodeURIComponent(order)}`;
+    }
+    
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error('Lỗi khi tải dữ liệu');
+    }
+    
+    const data = await res.json();
+    renderTable(data);
+  } catch (error) {
+    console.error('Error:', error);
+    tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:red;">Không thể tải dữ liệu</td></tr>';
+  }
+}
+
+// Render table rows
+function renderTable(rows) {
+  tableBody.innerHTML = '';
+  
+  if (!rows || rows.length === 0) {
+    tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Không có dữ liệu</td></tr>';
+    return;
+  }
+  
+  rows.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${r.id ?? ''}</td>
+      <td>${escapeHtml(r.ho_va_ten ?? '')}</td>
+      <td>${escapeHtml(r.gioi_tinh ?? '')}</td>
+      <td>${escapeHtml(r.so_dien_thoai ?? '')}</td>
+      <td>${escapeHtml(r.nhom ?? '')}</td>
+      <td>
+        <button class="action-btn edit-btn" onclick="editRow(${r.id})">✏️ Sửa</button>
+        <button class="action-btn del-btn" onclick="deleteRow(${r.id})">🗑️ Xóa</button>
+      </td>
+    `;
+    tableBody.appendChild(tr);
+  });
+}
+
+// Escape HTML to prevent XSS
+function escapeHtml(text) {
+  const map = {
+    '<': '&lt;',
+    '>': '&gt;',
+    '&': '&amp;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return String(text).replace(/[<>&"']/g, ch => map[ch]);
+}
+
+// Sort by Name button
+btnSortName.addEventListener('click', () => {
+  if (currentSort === 'ho_va_ten') {
+    currentOrder = (currentOrder === 'asc') ? 'desc' : 'asc';
+  } else {
+    currentSort = 'ho_va_ten';
+    currentOrder = 'asc';
+  }
+  loadData(currentSort, currentOrder);
+});
+
+// Sort by ID button
+btnSortId.addEventListener('click', () => {
+  if (currentSort === 'id') {
+    currentOrder = (currentOrder === 'asc') ? 'desc' : 'asc';
+  } else {
+    currentSort = 'id';
+    currentOrder = 'asc';
+  }
+  loadData(currentSort, currentOrder);
+});
+
+// Reset button
+btnReset.addEventListener('click', () => {
+  currentSort = null;
+  currentOrder = 'asc';
+  loadData();
+});
+
+// Add new customer
+btnAdd.addEventListener('click', async () => {
+  const ho_va_ten = prompt('Họ và tên:');
+  if (!ho_va_ten || ho_va_ten.trim() === '') return;
+  
+  const gioi_tinh = prompt('Giới tính (Nam/Nữ):') || '';
+  const so_dien_thoai = prompt('Số điện thoại:') || '';
+  const nhom = prompt('Nhóm:') || '';
+
+  try {
+    const payload = { 
+      ho_va_ten: ho_va_ten.trim(), 
+      gioi_tinh: gioi_tinh.trim(), 
+      so_dien_thoai: so_dien_thoai.trim(), 
+      nhom: nhom.trim() 
+    };
+    
+    const res = await fetch('/api/khachhang', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    
+    if (res.ok) {
+      alert('Thêm khách hàng thành công!');
+      loadData(currentSort, currentOrder);
+    } else {
+      alert('Lỗi khi thêm khách hàng');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Có lỗi xảy ra khi thêm khách hàng');
+  }
+});
+
+// Delete customer
+async function deleteRow(id) {
+  if (!confirm('Bạn có chắc muốn xóa khách hàng này?')) return;
+  
+  try {
+    const res = await fetch(`/api/khachhang/${id}`, { 
+      method: 'DELETE' 
+    });
+    
+    if (res.ok) {
+      alert('Xóa thành công!');
+      loadData(currentSort, currentOrder);
+    } else {
+      alert('Xóa thất bại');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Có lỗi xảy ra khi xóa');
+  }
+}
+
+// Edit customer
+async function editRow(id) {
+  try {
+    const res = await fetch('/api/khachhang');
+    const list = await res.json();
+    const rec = list.find(x => x.id === id);
+    
+    if (!rec) {
+      alert('Không tìm thấy bản ghi');
+      return;
+    }
+    
+    const newName = prompt('Họ và tên:', rec.ho_va_ten);
+    if (!newName) return;
+    
+    const newGender = prompt('Giới tính:', rec.gioi_tinh) || rec.gioi_tinh;
+    const newPhone = prompt('Số điện thoại:', rec.so_dien_thoai) || rec.so_dien_thoai;
+    const newGroup = prompt('Nhóm:', rec.nhom) || rec.nhom;
+
+    const updateRes = await fetch(`/api/khachhang/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        ho_va_ten: newName.trim(), 
+        gioi_tinh: newGender.trim(), 
+        so_dien_thoai: newPhone.trim(), 
+        nhom: newGroup.trim() 
+      })
+    });
+    
+    if (updateRes.ok) {
+      alert('Cập nhật thành công!');
+      loadData(currentSort, currentOrder);
+    } else {
+      alert('Cập nhật thất bại');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Có lỗi xảy ra khi cập nhật');
+  }
+}
+
+// Initial load
+loadData();
+</script>
+</body>
+</html>
