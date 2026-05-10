@@ -1,4 +1,4 @@
-# Dự án Quản lý Nhân sự
+# Dự án Quản lý Nhân sự (CTDL-GT)
 
 Dự án ứng dụng web hỗ trợ quản lý thông tin nhân sự, đối tác và khách hàng. Hệ thống sử dụng trực tiếp các file Excel (.xlsx) để lưu trữ dữ liệu thay vì SQL, giúp dễ dàng cài đặt và vận hành.
 
